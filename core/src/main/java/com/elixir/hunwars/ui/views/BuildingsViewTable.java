@@ -1,4 +1,4 @@
-package ui.views;
+package com.elixir.hunwars.ui.views;
 
 import java.util.Arrays;
 
@@ -13,10 +13,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Window.WindowStyle;
 import com.badlogic.gdx.utils.Align;
 import com.elixir.hunwars.GameState;
 import com.elixir.hunwars.enums.Buildings;
-
-import ui.Button;
-import ui.Text;
-import utils.FontGenerator;
+import com.elixir.hunwars.ui.Button;
+import com.elixir.hunwars.ui.Text;
+import com.elixir.hunwars.utils.FontGenerator;
 
 public class BuildingsViewTable extends Table {
 	private GameState gameState;

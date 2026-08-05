@@ -8,9 +8,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.elixir.hunwars.GameState;
 import com.elixir.hunwars.Main;
-
-import ui.GameViewTable;
-import ui.SideMenuTable;
+import com.elixir.hunwars.ui.GameViewTable;
+import com.elixir.hunwars.ui.SideMenuTable;
 
 public class GameScreen implements Screen {
 	private final Main game;

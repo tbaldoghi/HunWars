@@ -1,4 +1,4 @@
-package ui;
+package com.elixir.hunwars.ui;
 
 import java.util.ArrayList;
 

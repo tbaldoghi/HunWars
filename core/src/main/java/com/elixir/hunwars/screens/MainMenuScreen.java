@@ -20,10 +20,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.elixir.hunwars.Main;
-
-import ui.Button;
-import ui.Text;
-import utils.FontGenerator;
+import com.elixir.hunwars.ui.Button;
+import com.elixir.hunwars.ui.Text;
+import com.elixir.hunwars.utils.FontGenerator;
 
 public class MainMenuScreen implements Screen {
 	private final Main game;

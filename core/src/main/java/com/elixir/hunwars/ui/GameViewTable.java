@@ -1,12 +1,11 @@
-package ui;
+package com.elixir.hunwars.ui;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.elixir.hunwars.GameState;
 import com.elixir.hunwars.GameState.GameView;
-
-import ui.views.BuildingsViewTable;
-import ui.views.OverviewViewTable;
+import com.elixir.hunwars.ui.views.BuildingsViewTable;
+import com.elixir.hunwars.ui.views.OverviewViewTable;
 
 public class GameViewTable extends Table {
 	private GameState gameState;

@@ -1,4 +1,4 @@
-package ui.views;
+package com.elixir.hunwars.ui.views;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.elixir.hunwars.GameState;

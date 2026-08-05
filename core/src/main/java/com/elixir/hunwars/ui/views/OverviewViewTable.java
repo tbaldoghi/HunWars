@@ -1,10 +1,9 @@
-package ui.views;
+package com.elixir.hunwars.ui.views;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.elixir.hunwars.GameData;
 import com.elixir.hunwars.GameState;
-
-import ui.Text;
+import com.elixir.hunwars.ui.Text;
 
 public class OverviewViewTable extends Table {
 	private final int CELL_PAD = 36;
