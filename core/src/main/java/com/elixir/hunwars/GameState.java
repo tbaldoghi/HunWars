@@ -5,6 +5,7 @@ public class GameState {
 		Overview,
 		AnimalHusbandry,
 		Buildings,
+		Workers,
 		Armies,
 		Trade,
 		Diplomacy,

@@ -14,6 +14,7 @@ public class SideMenuTable extends Table {
 	private final GameView[] gameViews = {
 		GameView.Overview,
 		GameView.AnimalHusbandry,
+		GameView.Workers,
 		GameView.Armies,
 		GameView.Buildings,
 		GameView.Trade,
@@ -50,5 +51,9 @@ public class SideMenuTable extends Table {
 			add(buttons[i]);
 			row();
 		}
+		
+		Button nextTurnButton = new Button("Next Turn");
+		
+		add(nextTurnButton).padTop(64);
 	}
 }
