@@ -12,11 +12,11 @@ public class Main extends Game {
 
     @Override
     public void create() {
-    	viewport = new ScreenViewport();
-    	stage = new Stage(viewport);
-    	mainMenuScreen = new MainMenuScreen(this);
-    	
-    	setScreen(mainMenuScreen);
+	    	viewport = new ScreenViewport();
+	    	stage = new Stage(viewport);
+	    	mainMenuScreen = new MainMenuScreen(this);
+	    	
+	    	setScreen(mainMenuScreen);
     }
 
     @Override
