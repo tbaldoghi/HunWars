@@ -8,10 +8,14 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFont
 import com.badlogic.gdx.utils.Disposable;
 
 public class FontGenerator implements Disposable {
-	private final String FONT_PATH = "fonts/Yrsa.ttf"; 
+	private final String FONT_PATH = "fonts/Yrsa.ttf";
+	private final int TITLE_SIZE = 64;
+	private final int MENU_BUTTON_SIZE = 42;
+	private final int TEXT_SIZE = 32;
 	private FreeTypeFontParameter fontParameter;
 	private FreeTypeFontGenerator fontGenerator;
 	private BitmapFont titleFont;
+	private BitmapFont menuButtonFont;
 	private BitmapFont textFont;
 	
 	public FontGenerator() {
@@ -24,11 +28,16 @@ public class FontGenerator implements Disposable {
 		fontParameter.shadowOffsetY = 1;
 		
 		generateTitleFont();
+		generateMenuButtonFont();
 		generateTextFont();
 	}
 	
 	public BitmapFont getTitleFont() {
 		return titleFont;
+	}
+	
+	public BitmapFont getMenuButtonFont() {
+		return menuButtonFont;
 	}
 
 	public BitmapFont getTextFont() {
@@ -39,20 +48,26 @@ public class FontGenerator implements Disposable {
 	public void dispose() {
 		fontGenerator.dispose();
 	}
-	
-	private void generateTitleFont() {
-		fontParameter.size = 64;
-		fontParameter.color = new Color(0.3f, 0.15f, 0.15f, 1f);
 
+	private void generateTitleFont() {
+		fontParameter.size = TITLE_SIZE;
+		fontParameter.color = new Color(0.3f, 0.15f, 0.15f, 1f);
 		titleFont = fontGenerator.generateFont(fontParameter);
 		
 		titleFont.setUseIntegerPositions(true);
 	}
 	
-	private void generateTextFont() {
-		fontParameter.size = 32;
-		fontParameter.color = new Color(0.3f, 0.2f, 0.15f, 1f);
+	private void generateMenuButtonFont() {
+		fontParameter.size = MENU_BUTTON_SIZE;
+		fontParameter.color = new Color(0.3f, 0.15f, 0.15f, 1f);
+		menuButtonFont = fontGenerator.generateFont(fontParameter);
 		
+		menuButtonFont.setUseIntegerPositions(true);
+	}
+	
+	private void generateTextFont() {
+		fontParameter.size = TEXT_SIZE;
+		fontParameter.color = new Color(0.3f, 0.2f, 0.15f, 1f);
 		textFont = fontGenerator.generateFont(fontParameter);
 		
 		textFont.setUseIntegerPositions(true);

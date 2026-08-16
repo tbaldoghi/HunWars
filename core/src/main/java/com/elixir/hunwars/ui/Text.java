@@ -1,41 +1,29 @@
 package com.elixir.hunwars.ui;
 
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
 import com.elixir.hunwars.Styles;
-import com.elixir.hunwars.utils.FontGenerator;
 
 public class Text extends Label {
 	public Text(String text) {
-		super(text, Styles.textLabelStyle);
+		super(text, Styles.getInstance().textLabelStyle);
 		
 		setWrap(false);
 		setAlignment(Align.center);
 	}
-	
+
 	public Text(String text, boolean isTitle) {
-		super(text, getLabelStyle(isTitle));
+		super(text, textStyle(isTitle));
 		
 		setWrap(false);
 		setAlignment(Align.center);
 	}
-	
-	private static LabelStyle getLabelStyle(boolean isTitle) {
-		LabelStyle labelStyle = new LabelStyle();
-		FontGenerator fontGenerator = new FontGenerator();
-		BitmapFont font;
-		
+
+	private static LabelStyle textStyle(boolean isTitle) {
 		if (isTitle) {
-			font = fontGenerator.getTitleFont();
-		} else {
-			font = fontGenerator.getTextFont();
+			return Styles.getInstance().textTitleLabelStyle;
 		}
 		
-		labelStyle.font = font;
-		
-		fontGenerator.dispose();
-		
-		return labelStyle;
+		return Styles.getInstance().textLabelStyle;
 	}
 }

@@ -1,6 +1,8 @@
 package com.elixir.hunwars.ui.views;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -12,7 +14,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Window.WindowStyle;
 import com.badlogic.gdx.utils.Align;
 import com.elixir.hunwars.GameState;
-import com.elixir.hunwars.enums.Buildings;
+import com.elixir.hunwars.entities.BuildingData;
+import com.elixir.hunwars.entities.BuildingType;
+import com.elixir.hunwars.entities.LandType;
 import com.elixir.hunwars.ui.Button;
 import com.elixir.hunwars.ui.Text;
 import com.elixir.hunwars.utils.FontGenerator;
@@ -31,9 +35,6 @@ public class BuildingsViewTable extends Table {
 	}
 
 	private void addTableElements() {
-		String[] buildings = Arrays.stream(Buildings.values())
-								.map((value) -> value.toString())
-								.toArray(String[]::new);
 		Text nameText = new Text("Name");
 		Text haveText = new Text("Have");
 		Text percentageText = new Text("%");
@@ -54,21 +55,23 @@ public class BuildingsViewTable extends Table {
 		row();
 
 		Text emptyLandsText = new Text("Empty lands");
-		Text emptyLandsValueText = new Text("38");
+		Text emptyLandsValueText = new Text(Integer.toString(gameState.getPlayerGameData().getLand().getLandCount(LandType.FIELD)));
+		int emptyLandsPercentage = Math.round(gameState.getPlayerGameData().getLand().getLandCount(LandType.FIELD) / (float)gameState.getPlayerGameData().getLand().getTotalLandCount() * 100);
+		Text emptyLandsPercentageText = new Text(emptyLandsPercentage + "%");
 		emptyLandsText.setAlignment(Align.left);
 		add(emptyLandsText).padLeft(60).expandX().fillX();
 		add(emptyLandsValueText);
+		add(emptyLandsPercentageText);
 		row();
-		
-		for (int i = 0; i < buildings.length; i++) {
-			String building = buildings[i];
-			Text buildingNameText = new Text(building);
+
+		for (BuildingData building : gameState.getPlayerGameData().getBuilding().getBuildings()) {
+			Button buildingNameText = new Button(building.getName());
 			Text qText = new Text("5");
 			Text pText = new Text("4%");
 			Text ipText = new Text("2");
 
-			buildingNameText.setAlignment(Align.left);
-			
+			buildingNameText.left();
+
 			add(buildingNameText).padLeft(60).expandX().fillX();
 			add(qText);
 			add(pText);

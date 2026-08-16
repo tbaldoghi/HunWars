@@ -3,7 +3,9 @@ package com.elixir.hunwars;
 public class GameState {
 	public enum GameView {
 		Overview,
-		AnimalHusbandry,
+		Religion,
+		Map,
+		Agriculture,
 		Buildings,
 		Workers,
 		Armies,
@@ -13,7 +15,7 @@ public class GameState {
 	}
 
 	private GameView currentGameView;
-	private GameData playerGameData;
+	private Side playerGameData;
 	
 	public GameState() {
 		resetGameState();
@@ -27,12 +29,12 @@ public class GameState {
 		return currentGameView;
 	}
 
-	public GameData getPlayerGameData() {
+	public Side getPlayerGameData() {
 		return playerGameData;
 	}
 
 	public void resetGameState() {
 		currentGameView = GameView.Overview;
-		playerGameData = new GameData();
+		playerGameData = new Side();
 	}
 }
