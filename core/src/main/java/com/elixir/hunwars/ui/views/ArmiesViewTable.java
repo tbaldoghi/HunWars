@@ -40,10 +40,11 @@ public class ArmiesViewTable extends Table {
 		add(inProgressHeaderText).padLeft(8).padRight(8);
 		row();
 		
-		Text populationText = new Text("Population");
+		Text populationText = new Text("Worker");
 		Text populoationValueText = new Text("1000");
 		
 		add(populationText);
+		add();
 		add(populoationValueText);
 		row();
 		

@@ -1,5 +1,7 @@
 package com.elixir.hunwars.ui.views;
 
+import java.util.Iterator;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
@@ -7,6 +9,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Slider.SliderStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.elixir.hunwars.GameState;
+import com.elixir.hunwars.entities.Herd;
+import com.elixir.hunwars.entities.HerdData;
 import com.elixir.hunwars.entities.Land;
 import com.elixir.hunwars.entities.LandType;
 import com.elixir.hunwars.ui.Button;
@@ -25,6 +29,7 @@ public class AgricultureViewTable extends Table {
 
 	private void addTableElements() {
 		Land land = gameState.getPlayerGameData().getLand();
+		Herd herd = gameState.getPlayerGameData().getHerd();
 		
 		SliderStyle sliderStyle = new SliderStyle();
 		Skin defaultSkin = new Skin(Gdx.files.internal("skin/uiskin.json"));
@@ -50,6 +55,7 @@ public class AgricultureViewTable extends Table {
 		Text arableLandValueText = new Text("20");
 		Slider arableLandSlider = new Slider(0, 100, 1, false, defaultSkin);
 		Table husbandryTable = new Table();
+		Text herdsText = new Text("Herds", true);
 		
 		pastureText.setAlignment(Align.left);
 		
@@ -81,5 +87,17 @@ public class AgricultureViewTable extends Table {
 		husbandryTable.add(arableLandValueText).padLeft(12);
 		husbandryTable.add(arableLandText).padLeft(12);
 		add(husbandryTable);
+		row();
+		add(herdsText);
+		row();
+
+		for (HerdData herdData : herd.getHerds()) {
+			Text herdText = new Text(herdData.getName());
+			Text herdValueText = new Text(Integer.toString(herdData.getHave()));
+			
+			add(herdText);
+			add(herdValueText);
+			row();
+		}
 	}
 }

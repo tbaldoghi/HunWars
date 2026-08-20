@@ -3,12 +3,14 @@ package com.elixir.hunwars.entities;
 public class BuildingData {
 	private final BuildingType type;
 	private final String name;
+	private final int capacity;
 	private int have;
 	private int priority;
 
-	public BuildingData(BuildingType type, String name) {
+	public BuildingData(BuildingType type) {
 		this.type = type;
-		this.name = name;
+		this.name = type.getBuildingRuleSet().getName();
+		this.capacity = type.getBuildingRuleSet().getCapacity();
 	}
 	
 	public BuildingType getType() {
@@ -17,6 +19,10 @@ public class BuildingData {
 	
 	public String getName() {
 		return name;
+	}
+	
+	public int getCapacity() {
+		return capacity;
 	}
 
 	public int getHave() {

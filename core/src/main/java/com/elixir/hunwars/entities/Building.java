@@ -1,8 +1,6 @@
 package com.elixir.hunwars.entities;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -11,8 +9,13 @@ public class Building {
 	
 	public Building() {
 		populateBuildings();
+		resetBuildingData();
 	}
 	
+	public BuildingData getBuilding(BuildingType buildingType) {
+		return buildings.get(buildingType);
+	}
+
 	public List<BuildingData> getBuildings() {
 		return new ArrayList<BuildingData>(buildings.values());
 	}
@@ -29,7 +32,7 @@ public class Building {
 		int priority = 1;
 
 		for (BuildingType buildingType : BuildingType.values()) {
-			BuildingData buildingData = new BuildingData(buildingType, buildingType.getName());
+			BuildingData buildingData = new BuildingData(buildingType);
 
 			buildingData.setPriority(priority);
 			buildings.put(buildingType, buildingData);
@@ -37,4 +40,21 @@ public class Building {
 			priority++;
 		}
 	}
-}
+
+	private void resetBuildingData() {
+		buildings.get(BuildingType.YURT).setHave(30);
+		buildings.get(BuildingType.GARRISON).setHave(10);
+		buildings.get(BuildingType.KAM_HUT).setHave(2);
+		buildings.get(BuildingType.PALISADE_WALL).setHave(0);
+		buildings.get(BuildingType.GUARD_TOWER).setHave(0);
+		buildings.get(BuildingType.MARKET).setHave(5);
+		buildings.get(BuildingType.STORAGE).setHave(0);
+		buildings.get(BuildingType.TREASURY).setHave(0);
+		buildings.get(BuildingType.BLACKSMITH).setHave(0);
+		buildings.get(BuildingType.ARROW_MAKER).setHave(0);
+		buildings.get(BuildingType.HUSBANDRY).setHave(10);
+		buildings.get(BuildingType.LUMBER_CAMP).setHave(0);
+		buildings.get(BuildingType.BOG_ORE_MINE).setHave(0);
+		buildings.get(BuildingType.CLAY_PIT).setHave(0);
+	}
+} 

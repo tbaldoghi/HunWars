@@ -2,6 +2,7 @@ package com.elixir.hunwars.ui.views;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.elixir.hunwars.Side;
+import com.elixir.hunwars.entities.Population;
 import com.elixir.hunwars.GameState;
 import com.elixir.hunwars.ui.Text;
 
@@ -24,11 +25,13 @@ public class OverviewViewTable extends Table {
 	}
 	
 	private void addTableElements() {
-		Side playerGameData = gameState.getPlayerGameData(); 
+		Side playerGameData = gameState.getPlayerGameData();
+		Population population = gameState.getPlayerGameData().getPopulation();
+		
 		landText = new Text("Lands:");
 		landValueText = new Text(String.valueOf(playerGameData.getLand().getTotalLandCount()));
 		populationText = new Text("Population:");
-		populationValueText = new Text(String.valueOf(playerGameData.getPopulation()));
+		populationValueText = new Text(Integer.toString(population.getTotalPopulationCount()));
 		silverText = new Text("Silver:");
 		foodText = new Text("Food:");
 		

@@ -1,6 +1,5 @@
 package com.elixir.hunwars.entities;
 
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 
 public class Land {
@@ -24,7 +23,7 @@ public class Land {
 	public int getLandCount(LandType landType) {
 		return lands.get(landType).getHave();
 	}
-	
+
 	private void populateLands() {
 		for (LandType landType : LandType.values()) {
 			LandData land = new LandData(landType);

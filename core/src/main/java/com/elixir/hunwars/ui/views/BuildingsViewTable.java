@@ -66,7 +66,7 @@ public class BuildingsViewTable extends Table {
 
 		for (BuildingData building : gameState.getPlayerGameData().getBuilding().getBuildings()) {
 			Button buildingNameText = new Button(building.getName());
-			Text qText = new Text("5");
+			Text qText = new Text(Integer.toString(building.getHave()));
 			Text pText = new Text("4%");
 			Text ipText = new Text("2");
 
