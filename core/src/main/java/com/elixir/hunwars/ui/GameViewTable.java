@@ -8,16 +8,18 @@ import com.elixir.hunwars.ui.views.AgricultureViewTable;
 import com.elixir.hunwars.ui.views.ArmiesViewTable;
 import com.elixir.hunwars.ui.views.BuildingsViewTable;
 import com.elixir.hunwars.ui.views.OverviewViewTable;
+import com.elixir.hunwars.ui.views.StorageViewTable;
 import com.elixir.hunwars.ui.views.WorkersViewTable;
 
 public class GameViewTable extends Table {
 	private GameState gameState;
 	private Stage stage;
 	private OverviewViewTable overviewViewTable;
-	private AgricultureViewTable animalHusbandryViewTable;
+	private AgricultureViewTable agricultureViewTable;
 	private WorkersViewTable workersViewTable;
 	private BuildingsViewTable buildingsViewTable;
 	private ArmiesViewTable armiesViewTable;
+	private StorageViewTable storageViewTable;
 	
 	public GameViewTable(GameState gameState, Stage stage) {
 		this.gameState = gameState;
@@ -32,20 +34,23 @@ public class GameViewTable extends Table {
 		clearChildren();
 
 		switch (currentGameView) {
-		case Overview:
+		case OVERVIEW:
 			add(overviewViewTable);
 			break;
-		case Agriculture:
-			add(animalHusbandryViewTable);
+		case AGRICULTURE:
+			add(agricultureViewTable);
 			break;
-		case Workers:
+		case WORKERS:
 			add(workersViewTable);
 			break;
-		case Buildings:
+		case BUILDINGS:
 			add(buildingsViewTable);
 			break;
-		case Armies:
+		case ARMIES:
 			add(armiesViewTable);
+			break;
+		case STORAGE:
+			add(storageViewTable);
 			break;
 		default:
 			add(overviewViewTable);
@@ -55,10 +60,11 @@ public class GameViewTable extends Table {
 	
 	private void addTableElements() {
 		overviewViewTable = new OverviewViewTable(gameState);
-		animalHusbandryViewTable = new AgricultureViewTable(gameState);
+		agricultureViewTable = new AgricultureViewTable(gameState, stage);
 		workersViewTable = new WorkersViewTable(gameState);
 		buildingsViewTable = new BuildingsViewTable(gameState, stage);
 		armiesViewTable = new ArmiesViewTable(gameState);
+		storageViewTable = new StorageViewTable(gameState);
 		
 		updateGameView();
 	}

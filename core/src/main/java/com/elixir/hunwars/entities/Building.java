@@ -27,6 +27,13 @@ public class Building {
 		
 		return buildingsToPrioritize;
 	}
+	
+	public int storageCapcityForResource(ResourceType resourceType) {
+		int capacity = resourceType.getResourceRuleSet().getStorageCapacity().getCapacity();
+		int storageNumber = getBuilding(BuildingType.STORAGE).getHave();
+
+		return capacity * storageNumber;
+	}
 
 	private void populateBuildings() {
 		int priority = 1;
@@ -48,7 +55,7 @@ public class Building {
 		buildings.get(BuildingType.PALISADE_WALL).setHave(0);
 		buildings.get(BuildingType.GUARD_TOWER).setHave(0);
 		buildings.get(BuildingType.MARKET).setHave(5);
-		buildings.get(BuildingType.STORAGE).setHave(0);
+		buildings.get(BuildingType.STORAGE).setHave(5);
 		buildings.get(BuildingType.TREASURY).setHave(0);
 		buildings.get(BuildingType.BLACKSMITH).setHave(0);
 		buildings.get(BuildingType.ARROW_MAKER).setHave(0);

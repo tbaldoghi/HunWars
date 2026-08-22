@@ -3,6 +3,7 @@ package com.elixir.hunwars.ui.views;
 import java.util.Iterator;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider.SliderStyle;
@@ -14,15 +15,18 @@ import com.elixir.hunwars.entities.HerdData;
 import com.elixir.hunwars.entities.Land;
 import com.elixir.hunwars.entities.LandType;
 import com.elixir.hunwars.ui.Button;
+import com.elixir.hunwars.ui.Modal;
 import com.elixir.hunwars.ui.Text;
 
 public class AgricultureViewTable extends Table {
 	private GameState gameState;
+	private Stage stage;
 	
-	public AgricultureViewTable(GameState gameState) {
+	public AgricultureViewTable(GameState gameState, Stage stage) {
 		super();
 		
 		this.gameState = gameState;
+		this.stage = stage;
 
 		addTableElements();
 	}
@@ -99,5 +103,18 @@ public class AgricultureViewTable extends Table {
 			add(herdValueText);
 			row();
 		}
+
+		Modal clearModal = new Modal("Title here", defaultSkin);
+		Button modalButton = new Button("Ok");
+		Text modalText = new Text("Modal text text text");
+		Text modalText2 = new Text("Modal text2");
+		clearModal.getContentTable().add(modalText);
+		clearModal.getContentTable().row();
+		clearModal.getContentTable().add(modalText2);
+		clearModal.getContentTable().row();
+		clearModal.button(modalButton);
+
+		clearModal.show(stage);
+		clearModal.hide();
 	}
 }

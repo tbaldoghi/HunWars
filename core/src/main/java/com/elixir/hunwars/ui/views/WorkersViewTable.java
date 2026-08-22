@@ -46,7 +46,7 @@ public class WorkersViewTable extends Table {
 			add(buildingNameText);
 			add(haveText);
 			add(percentageText);
-			
+
 			if (i == 0) {
 				add();
 			} else {

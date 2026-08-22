@@ -2,16 +2,17 @@ package com.elixir.hunwars;
 
 public class GameState {
 	public enum GameView {
-		Overview,
-		Religion,
-		Map,
-		Agriculture,
-		Buildings,
-		Workers,
-		Armies,
-		Trade,
-		Diplomacy,
-		War
+		OVERVIEW,
+		RELIGION,
+		MAP,
+		AGRICULTURE,
+		BUILDINGS,
+		WORKERS,
+		ARMIES,
+		TRADE,
+		DIPLOMACY,
+		WAR,
+		STORAGE
 	}
 
 	private GameView currentGameView;
@@ -34,7 +35,7 @@ public class GameState {
 	}
 
 	public void resetGameState() {
-		currentGameView = GameView.Overview;
+		currentGameView = GameView.OVERVIEW;
 		playerGameData = new Side();
 	}
 }

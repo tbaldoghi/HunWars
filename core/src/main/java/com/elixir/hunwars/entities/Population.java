@@ -1,6 +1,8 @@
 package com.elixir.hunwars.entities;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 public class Population {
 	private LinkedHashMap<PopulationType, PopulationData> populations = new LinkedHashMap<>();
@@ -10,6 +12,10 @@ public class Population {
 		resetPopulationData();
 	}
 	
+	public List<PopulationData> getPopulations() {
+		return new ArrayList<PopulationData>(populations.values());
+	}
+
 	public int getTotalPopulationCount() {
 		int counter = 0;
 		
@@ -19,7 +25,7 @@ public class Population {
 
 		return counter;
 	}
-	
+
 	private void populateLands() {
 		for (PopulationType populationType : PopulationType.values()) {
 			PopulationData populationData = new PopulationData(populationType);

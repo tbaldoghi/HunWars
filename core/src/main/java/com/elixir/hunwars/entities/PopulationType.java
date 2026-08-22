@@ -3,15 +3,14 @@ package com.elixir.hunwars.entities;
 import com.elixir.hunwars.enums.HousingType;
 
 public enum PopulationType {
-	WORKER(new PopulationRuleSet(HousingType.YURT)),
-	TRIBESMAN(new PopulationRuleSet(HousingType.GARRISON)),
-	SPEARMAN(new PopulationRuleSet(HousingType.GARRISON)),
-	ARCHER(new PopulationRuleSet(HousingType.GARRISON)),
-	LANCER(new PopulationRuleSet(HousingType.GARRISON)),
-	HORSE_ARCHER(new PopulationRuleSet(HousingType.GARRISON)),
-	TARKHAN(new PopulationRuleSet(HousingType.GARRISON)),
-	RAIDER(new PopulationRuleSet(HousingType.GARRISON)),
-	KAM(new PopulationRuleSet(HousingType.HUT));
+	WORKER(new PopulationRuleSet("Worker", HousingType.YURT)),
+	TRIBESMAN(new PopulationRuleSet("Tribesman", HousingType.GARRISON)),
+	SPEARMAN(new PopulationRuleSet("Spearman", HousingType.GARRISON)),
+	ARCHER(new PopulationRuleSet("Archer", HousingType.GARRISON)),
+	LANCER(new PopulationRuleSet("Lancer", HousingType.GARRISON)),
+	HORSE_ARCHER(new PopulationRuleSet("Horse archer", HousingType.GARRISON)),
+	TARKHAN(new PopulationRuleSet("Tarkhan", HousingType.GARRISON)),
+	KAM(new PopulationRuleSet("Kam", HousingType.HUT));
 
 	private final PopulationRuleSet populationRuleSet;
 

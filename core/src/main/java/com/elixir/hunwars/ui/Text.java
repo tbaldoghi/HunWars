@@ -11,6 +11,13 @@ public class Text extends Label {
 		setWrap(false);
 		setAlignment(Align.center);
 	}
+	
+	public Text(int text) {
+		super(Integer.toString(text), Styles.getInstance().textLabelStyle);
+		
+		setWrap(false);
+		setAlignment(Align.center);
+	}
 
 	public Text(String text, boolean isTitle) {
 		super(text, textStyle(isTitle));

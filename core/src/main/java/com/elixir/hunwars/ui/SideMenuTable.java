@@ -16,16 +16,16 @@ public class SideMenuTable extends Table {
 	private GameState gameState;
 	private GameViewTable gameViewTable;
 	private final GameView[] gameViews = {
-		GameView.Overview,
-		GameView.Agriculture,
-		GameView.Workers,
-		GameView.Buildings,
-		GameView.Armies,
-		GameView.Trade,
-		GameView.Map,
-		GameView.Diplomacy,
-		GameView.Religion,
-		GameView.War
+		GameView.OVERVIEW,
+		GameView.AGRICULTURE,
+		GameView.WORKERS,
+		GameView.BUILDINGS,
+		GameView.ARMIES,
+		GameView.TRADE,
+		GameView.MAP,
+		GameView.DIPLOMACY,
+		GameView.RELIGION,
+		GameView.WAR
 	};
 	private Button[] buttons = new Button[gameViews.length];
 
@@ -107,6 +107,14 @@ public class SideMenuTable extends Table {
 			storageButtonStyle.up = new SpriteDrawable(storageSprite);
 			storageButtonStyle.down = new SpriteDrawable(storageSpriteDown);
 			ImageButton storageButton = new ImageButton(storageButtonStyle);
+			
+			storageButton.addListener(new ClickListener() {
+				@Override
+				public void clicked(InputEvent event, float x, float y) {
+					gameState.setCurrentGameView(GameView.STORAGE);
+					gameViewTable.updateGameView();
+				}
+			});
 			
 			ImageButtonStyle foodButtonStyle = new ImageButtonStyle();
 			
