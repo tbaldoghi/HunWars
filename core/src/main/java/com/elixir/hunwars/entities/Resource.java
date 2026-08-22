@@ -44,7 +44,7 @@ public class Resource {
 		resources.get(ResourceType.CLAY).setHave(10);
 		resources.get(ResourceType.WEAPON).setHave(10);
 		resources.get(ResourceType.ARROW).setHave(10);
-		resources.get(ResourceType.FOOD).setHave(10);
+		resources.get(ResourceType.FOOD).setHave(1000);
 		resources.get(ResourceType.GOODS).setHave(10);
 		resources.get(ResourceType.SILVER).setHave(10);
 	}

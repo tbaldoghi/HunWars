@@ -1,21 +1,14 @@
 package com.elixir.hunwars.ui.views;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
-
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Window.WindowStyle;
 import com.badlogic.gdx.utils.Align;
 import com.elixir.hunwars.GameState;
 import com.elixir.hunwars.entities.BuildingData;
-import com.elixir.hunwars.entities.BuildingType;
 import com.elixir.hunwars.entities.LandType;
 import com.elixir.hunwars.ui.Button;
 import com.elixir.hunwars.ui.Text;

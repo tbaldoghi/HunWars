@@ -31,11 +31,11 @@ public class StorageViewTable extends Table {
 		Text freeHeaderText = new Text("Free");
 		Text productionHeaderText = new Text("Production");
 		
-		add(resourceHeaderText);
-		add(capacityHeaderText);
-		add(haveHeaderText);
-		add(freeHeaderText);
-		add(productionHeaderText);
+		add(resourceHeaderText).padLeft(8).padRight(8);
+		add(capacityHeaderText).padLeft(8).padRight(8);
+		add(haveHeaderText).padLeft(8).padRight(8);
+		add(freeHeaderText).padLeft(8).padRight(8);
+		add(productionHeaderText).padLeft(8).padRight(8);
 		row();
 		
 		for (ResourceData resourceData : resources) {

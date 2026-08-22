@@ -10,22 +10,22 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.elixir.hunwars.GameState;
-import com.elixir.hunwars.GameState.GameView;
+import com.elixir.hunwars.enums.GameViewType;
 
 public class SideMenuTable extends Table {
 	private GameState gameState;
 	private GameViewTable gameViewTable;
-	private final GameView[] gameViews = {
-		GameView.OVERVIEW,
-		GameView.AGRICULTURE,
-		GameView.WORKERS,
-		GameView.BUILDINGS,
-		GameView.ARMIES,
-		GameView.TRADE,
-		GameView.MAP,
-		GameView.DIPLOMACY,
-		GameView.RELIGION,
-		GameView.WAR
+	private final GameViewType[] gameViews = {
+		GameViewType.OVERVIEW,
+		GameViewType.AGRICULTURE,
+		GameViewType.WORKERS,
+		GameViewType.BUILDINGS,
+		GameViewType.ARMIES,
+		GameViewType.TRADE,
+		GameViewType.MAP,
+		GameViewType.DIPLOMACY,
+		GameViewType.RELIGION,
+		GameViewType.WAR
 	};
 	private Button[] buttons = new Button[gameViews.length];
 
@@ -66,8 +66,8 @@ public class SideMenuTable extends Table {
 		row();*/
 		
 		for (int i = 0; i < gameViews.length; i++) {
-			GameView gameView = gameViews[i];
-			buttons[i] = new Button(gameView.name(), true);
+			GameViewType gameView = gameViews[i];
+			buttons[i] = new Button(gameView.getName(), true);
 
 			buttons[i].addListener(new ClickListener() {
 				@Override
@@ -111,7 +111,7 @@ public class SideMenuTable extends Table {
 			storageButton.addListener(new ClickListener() {
 				@Override
 				public void clicked(InputEvent event, float x, float y) {
-					gameState.setCurrentGameView(GameView.STORAGE);
+					gameState.setCurrentGameView(GameViewType.STORAGE);
 					gameViewTable.updateGameView();
 				}
 			});
@@ -125,6 +125,14 @@ public class SideMenuTable extends Table {
 			foodButtonStyle.up = new SpriteDrawable(foodSprite);
 			foodButtonStyle.down = new SpriteDrawable(foodSpriteDown);
 			ImageButton foodButton = new ImageButton(foodButtonStyle);
+			
+			foodButton.addListener(new ClickListener() {
+				@Override
+				public void clicked(InputEvent event, float x, float y) {
+					gameState.setCurrentGameView(GameViewType.FOOD);
+					gameViewTable.updateGameView();
+				}
+			});
 			
 			ImageButtonStyle researchButtonStyle = new ImageButtonStyle();
 			

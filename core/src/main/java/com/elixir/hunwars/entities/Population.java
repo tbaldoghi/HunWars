@@ -25,6 +25,16 @@ public class Population {
 
 		return counter;
 	}
+	
+	public int foodPerTurn() {
+		int counter = 0;
+
+		for (PopulationData populationData : populations.values()) {
+			counter += populationData.getHave() * populationData.getFoodPerTurn();
+		}
+
+		return counter;
+	}
 
 	private void populateLands() {
 		for (PopulationType populationType : PopulationType.values()) {

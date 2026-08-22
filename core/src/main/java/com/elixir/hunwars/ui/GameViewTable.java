@@ -3,10 +3,11 @@ package com.elixir.hunwars.ui;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.elixir.hunwars.GameState;
-import com.elixir.hunwars.GameState.GameView;
+import com.elixir.hunwars.enums.GameViewType;
 import com.elixir.hunwars.ui.views.AgricultureViewTable;
 import com.elixir.hunwars.ui.views.ArmiesViewTable;
 import com.elixir.hunwars.ui.views.BuildingsViewTable;
+import com.elixir.hunwars.ui.views.FoodViewTable;
 import com.elixir.hunwars.ui.views.OverviewViewTable;
 import com.elixir.hunwars.ui.views.StorageViewTable;
 import com.elixir.hunwars.ui.views.WorkersViewTable;
@@ -20,6 +21,7 @@ public class GameViewTable extends Table {
 	private BuildingsViewTable buildingsViewTable;
 	private ArmiesViewTable armiesViewTable;
 	private StorageViewTable storageViewTable;
+	private FoodViewTable foodViewTable;
 	
 	public GameViewTable(GameState gameState, Stage stage) {
 		this.gameState = gameState;
@@ -29,7 +31,7 @@ public class GameViewTable extends Table {
 	}
 	
 	public void updateGameView() {
-		GameView currentGameView = gameState.getCurrentGameView();
+		GameViewType currentGameView = gameState.getCurrentGameView();
 		
 		clearChildren();
 
@@ -52,6 +54,9 @@ public class GameViewTable extends Table {
 		case STORAGE:
 			add(storageViewTable);
 			break;
+		case FOOD:
+			add(foodViewTable);
+			break;
 		default:
 			add(overviewViewTable);
 			break;
@@ -65,7 +70,8 @@ public class GameViewTable extends Table {
 		buildingsViewTable = new BuildingsViewTable(gameState, stage);
 		armiesViewTable = new ArmiesViewTable(gameState);
 		storageViewTable = new StorageViewTable(gameState);
-		
+		foodViewTable = new FoodViewTable(gameState);
+
 		updateGameView();
 	}
 }
