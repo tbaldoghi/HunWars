@@ -12,7 +12,7 @@ public class BuildingData {
 		this.name = type.getBuildingRuleSet().getName();
 		this.capacity = type.getBuildingRuleSet().getCapacity();
 	}
-	
+
 	public BuildingType getType() {
 		return type;
 	}

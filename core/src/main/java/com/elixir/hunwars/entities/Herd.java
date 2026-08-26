@@ -6,10 +6,14 @@ import java.util.List;
 
 public class Herd {
 	private LinkedHashMap<HerdType, HerdData> herds = new LinkedHashMap<>();
-	
+
 	public Herd() {
 		populateHerds();
 		resetHerdData();
+	}
+	
+	public HerdData getHerd(HerdType herdType) {
+		return herds.get(herdType);
 	}
 
 	public List<HerdData> getHerds() {

@@ -27,6 +27,55 @@ public class Resource {
 				.toList()
 		);
 	}
+	
+	public int hideProduction(Herd herd) {
+		int cattleHave = herd.getHerd(HerdType.CATTLE).getHave();
+		// TODO: Horse, too?
+		return cattleHave * ResourceType.HIDE.getResourceRuleSet().getProduction();
+	}
+	
+	public int woolProduction(Herd herd) {
+		int sheepHave = herd.getHerd(HerdType.SHEEP).getHave();
+
+		return sheepHave * ResourceType.WOOL.getResourceRuleSet().getProduction();
+	}
+	
+	public int mineProduction(Building building, BuildingType buildingType, ResourceType resourceType) {
+		int buildingHave = building.getBuilding(buildingType).getHave();
+
+		return buildingHave * resourceType.getResourceRuleSet().getProduction();
+	}
+
+	public int craftProduction(Building building, BuildingType buildingType, ResourceType inResourceType, ResourceType outResourceType) {
+		int buildingHave = building.getBuilding(buildingType).getHave();
+		int inResourceHave = resources.get(inResourceType).getHave();
+		int production = 0;
+
+		if (buildingHave == 0) {
+			return production;
+		}
+
+		while (buildingHave != 0) {
+			production = buildingHave * outResourceType.getResourceRuleSet().getProduction();
+
+			if (inResourceHave / production >= 1) {
+				return production;
+			}
+
+			buildingHave--;
+		}
+
+		return production;
+	}
+	
+	public int foodProduction() {
+		return 10;
+	}
+
+	public void resourceProduction(Herd herd, Building building) {
+		resources.get(ResourceType.HIDE).increaseHave(hideProduction(herd));
+		resources.get(ResourceType.WOOD).increaseHave(mineProduction(building, BuildingType.LUMBER_CAMP, ResourceType.WOOD));
+	}
 
 	private void populateResources() {
 		for (ResourceType resourceType : ResourceType.values()) {

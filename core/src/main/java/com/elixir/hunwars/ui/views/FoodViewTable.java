@@ -25,12 +25,12 @@ public class FoodViewTable extends Table {
 		Text haveText = new Text("Have in storage");
 		int foodHave = resource.getResource(ResourceType.FOOD).getHave();
 		Text haveValueText = new Text(foodHave);
-		Text productionText = new Text("Production / turn");
+		Text productionText = new Text("Food production per Turn");
 		Text productionValueText = new Text("0");
 		Text summaryText = new Text("Summary");
 		int summary = foodHave + 0;
 		Text summaryValueText = new Text(summary);
-		Text consumptionText = new Text("Consumption / turn");
+		Text consumptionText = new Text("Consumption per Turn");
 		int foodPerTurn = population.foodPerTurn();
 		Text consumptionValueText = new Text(foodPerTurn);
 		Text balanceText = new Text("Balance");

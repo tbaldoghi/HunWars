@@ -26,6 +26,10 @@ public class ResourceData {
 		this.have = have;
 	}
 
+	public void increaseHave(int value) {
+		this.have += value;
+	}
+
 	public String getName() {
 		return name;
 	}
