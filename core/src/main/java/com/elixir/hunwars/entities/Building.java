@@ -62,12 +62,12 @@ public class Building {
 		buildings.get(BuildingType.MARKET).setHave(5);
 		buildings.get(BuildingType.STORAGE).setHave(5);
 		buildings.get(BuildingType.TREASURY).setHave(0);
-		buildings.get(BuildingType.BLACKSMITH).setHave(0);
+		buildings.get(BuildingType.BLACKSMITH).setHave(1);
 		buildings.get(BuildingType.ARROW_MAKER).setHave(0);
 		buildings.get(BuildingType.HUSBANDRY).setHave(10);
 		husbandry = new Husbandry(getBuilding(BuildingType.HUSBANDRY).getHave());
-		buildings.get(BuildingType.LUMBER_CAMP).setHave(0);
-		buildings.get(BuildingType.BOG_ORE_MINE).setHave(0);
-		buildings.get(BuildingType.CLAY_PIT).setHave(0);
+		buildings.get(BuildingType.LUMBER_CAMP).setHave(1);
+		buildings.get(BuildingType.BOG_ORE_MINE).setHave(1);
+		buildings.get(BuildingType.CLAY_PIT).setHave(2);
 	}
-} 
+}

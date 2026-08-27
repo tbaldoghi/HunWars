@@ -101,12 +101,14 @@ public class AgricultureViewTable extends Table {
 		landsTable.add(riverText);
 		landsTable.add(riverValueText);
 		landsTable.row();
-		landsTable.add(husbandryText);
-		landsTable.add(husbandryValueText);
+
 		landsTable.row();
 		
 		add(landsTable);
-
+		row();
+		add(husbandryText);
+		add(husbandryValueText);
+		row();
 		husbandryTable.add(pastureText).padRight(12);
 		husbandryTable.add(pastureValueText).padRight(12);
 		husbandryTable.add(pastureSlider);
@@ -125,7 +127,7 @@ public class AgricultureViewTable extends Table {
 			Text herdText = new Text(herdData.getName());
 			Text herdValueText = new Text(Integer.toString(herdData.getHave()));
 			
-			herdsTable.add(herdText);
+			herdsTable.add(herdText).padRight(12);
 			herdsTable.add(herdValueText);
 			herdsTable.row();
 		}

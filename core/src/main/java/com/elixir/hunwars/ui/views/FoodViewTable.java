@@ -2,6 +2,8 @@ package com.elixir.hunwars.ui.views;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.elixir.hunwars.GameState;
+import com.elixir.hunwars.entities.Building;
+import com.elixir.hunwars.entities.Herd;
 import com.elixir.hunwars.entities.Population;
 import com.elixir.hunwars.entities.Resource;
 import com.elixir.hunwars.entities.ResourceType;
@@ -19,6 +21,8 @@ public class FoodViewTable extends Table {
 	}
 
 	private void addTableElements() {
+		Herd herd = gameState.getPlayerGameData().getHerd();
+		Building building = gameState.getPlayerGameData().getBuilding();
 		Resource resource = gameState.getPlayerGameData().getResource();
 		Population population = gameState.getPlayerGameData().getPopulation();
 
@@ -26,7 +30,7 @@ public class FoodViewTable extends Table {
 		int foodHave = resource.getResource(ResourceType.FOOD).getHave();
 		Text haveValueText = new Text(foodHave);
 		Text productionText = new Text("Food production per Turn");
-		Text productionValueText = new Text("0");
+		Text productionValueText = new Text(resource.getResourceProduction(ResourceType.FOOD, herd, building));
 		Text summaryText = new Text("Summary");
 		int summary = foodHave + 0;
 		Text summaryValueText = new Text(summary);

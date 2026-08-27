@@ -33,48 +33,99 @@ public class Resource {
 		// TODO: Horse, too?
 		return cattleHave * ResourceType.HIDE.getResourceRuleSet().getProduction();
 	}
-	
+
 	public int woolProduction(Herd herd) {
 		int sheepHave = herd.getHerd(HerdType.SHEEP).getHave();
 
 		return sheepHave * ResourceType.WOOL.getResourceRuleSet().getProduction();
 	}
+
+	public int woodProduction(Building building) {
+		return mineProduction(building, BuildingType.LUMBER_CAMP, ResourceType.WOOD);
+	}
 	
-	public int mineProduction(Building building, BuildingType buildingType, ResourceType resourceType) {
+	public int bogIronProduction(Building building) {
+		return mineProduction(building, BuildingType.BOG_ORE_MINE, ResourceType.BOG_IRON);
+	}
+	
+	public int clayProduction(Building building) {
+		return mineProduction(building, BuildingType.CLAY_PIT, ResourceType.CLAY);
+	}
+	
+	public int weaponProduction(Building building) {
+		return craftProduction(building, BuildingType.BLACKSMITH, ResourceType.BOG_IRON, ResourceType.WEAPON);
+	}
+	
+	public int arrowProduction(Building building) {
+		return craftProduction(building, BuildingType.ARROW_MAKER, ResourceType.WOOD, ResourceType.ARROW);
+	}
+	
+	public int goodsProduction(Building building) {
+		return craftProduction(building, BuildingType.POTTER, ResourceType.CLAY, ResourceType.GOODS);
+	}
+
+	public int foodProduction(Herd herd, Building building) {
+		int cattleHave = herd.getHerd(HerdType.CATTLE).getHave();
+		int sheepHave = herd.getHerd(HerdType.SHEEP).getHave();
+		// TODO: Horse, too?
+		int arableLandHave = building.getHusbandry().getArableLand();
+		int production = ResourceType.FOOD.getResourceRuleSet().getProduction();
+
+		return arableLandHave * production + cattleHave * HerdType.CATTLE.getHerdRuleSet().getFoodProduction() + sheepHave * HerdType.SHEEP.getHerdRuleSet().getFoodProduction();
+	}
+	
+	public int getResourceProduction(ResourceType resourceType, Herd herd, Building building) {
+		switch (resourceType) {
+		case HIDE:
+			return hideProduction(herd);
+		case WOOL:
+			return woolProduction(herd);
+		case WOOD:
+			return woodProduction(building);
+		case BOG_IRON:
+			return bogIronProduction(building);
+		case CLAY:
+			return clayProduction(building);
+		case WEAPON:
+			return weaponProduction(building);
+		case ARROW:
+			return arrowProduction(building);
+		case FOOD:
+			return foodProduction(herd, building);
+		case GOODS:
+			return goodsProduction(building);
+		default:
+			break;
+		}
+
+		return 0;
+	}
+	
+	private int mineProduction(Building building, BuildingType buildingType, ResourceType resourceType) {
 		int buildingHave = building.getBuilding(buildingType).getHave();
 
 		return buildingHave * resourceType.getResourceRuleSet().getProduction();
 	}
 
-	public int craftProduction(Building building, BuildingType buildingType, ResourceType inResourceType, ResourceType outResourceType) {
+	private int craftProduction(Building building, BuildingType buildingType, ResourceType inResourceType, ResourceType outResourceType) {
 		int buildingHave = building.getBuilding(buildingType).getHave();
 		int inResourceHave = resources.get(inResourceType).getHave();
-		int production = 0;
 
 		if (buildingHave == 0) {
-			return production;
+			return 0;
 		}
 
-		while (buildingHave != 0) {
-			production = buildingHave * outResourceType.getResourceRuleSet().getProduction();
+		int production = buildingHave * outResourceType.getResourceRuleSet().getProduction();
 
-			if (inResourceHave / production >= 1) {
+		while (production > 0) {
+			if ((float)inResourceHave / production >= 1) {
 				return production;
 			}
 
-			buildingHave--;
+			production--;
 		}
 
 		return production;
-	}
-	
-	public int foodProduction() {
-		return 10;
-	}
-
-	public void resourceProduction(Herd herd, Building building) {
-		resources.get(ResourceType.HIDE).increaseHave(hideProduction(herd));
-		resources.get(ResourceType.WOOD).increaseHave(mineProduction(building, BuildingType.LUMBER_CAMP, ResourceType.WOOD));
 	}
 
 	private void populateResources() {

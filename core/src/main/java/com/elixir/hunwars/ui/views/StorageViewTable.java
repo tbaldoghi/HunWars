@@ -5,8 +5,10 @@ import java.util.List;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.elixir.hunwars.GameState;
 import com.elixir.hunwars.entities.Building;
+import com.elixir.hunwars.entities.Herd;
 import com.elixir.hunwars.entities.Resource;
 import com.elixir.hunwars.entities.ResourceData;
+import com.elixir.hunwars.entities.ResourceType;
 import com.elixir.hunwars.ui.Text;
 
 public class StorageViewTable extends Table {
@@ -22,9 +24,10 @@ public class StorageViewTable extends Table {
 
 	private void addTableElements() {
 		Resource resource = gameState.getPlayerGameData().getResource();
+		Herd herd = gameState.getPlayerGameData().getHerd();
 		Building building = gameState.getPlayerGameData().getBuilding();
 		List<ResourceData> resources = resource.getStorageResources();
-		
+
 		Text resourceHeaderText = new Text("Name");
 		Text capacityHeaderText = new Text("Capacity");
 		Text haveHeaderText = new Text("Have");
@@ -39,14 +42,15 @@ public class StorageViewTable extends Table {
 		row();
 		
 		for (ResourceData resourceData : resources) {
+			ResourceType resourceType = resourceData.getType();
 			Text nameText = new Text(resourceData.getName());
-			int storageCapacity = building.storageCapcityForResource(resourceData.getType());
+			int storageCapacity = building.storageCapcityForResource(resourceType);
 			Text capacityText = new Text(storageCapacity);
 			int resourceHave = resourceData.getHave();
 			Text haveText = new Text(resourceHave);
 			Text freeText = new Text(storageCapacity - resourceHave);
-			Text productionText = new Text("0");
-			
+			Text productionText = new Text(resource.getResourceProduction(resourceType, herd, building));
+
 			add(nameText);
 			add(capacityText);
 			add(haveText);
