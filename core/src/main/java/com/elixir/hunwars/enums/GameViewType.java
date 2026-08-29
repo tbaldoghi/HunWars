@@ -6,6 +6,7 @@ public enum GameViewType {
 	MAP("Map"),
 	AGRICULTURE("Agriculture"),
 	BUILDINGS("Buildings"),
+	BUILDINGS_PRODUCTION("Buildings production"),
 	WORKERS("Workers"),
 	ARMIES("Armies"),
 	TRADE("Trade"),

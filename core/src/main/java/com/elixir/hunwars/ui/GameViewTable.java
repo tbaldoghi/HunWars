@@ -6,10 +6,12 @@ import com.elixir.hunwars.GameState;
 import com.elixir.hunwars.enums.GameViewType;
 import com.elixir.hunwars.ui.views.AgricultureViewTable;
 import com.elixir.hunwars.ui.views.ArmiesViewTable;
+import com.elixir.hunwars.ui.views.BuildingsInProgressViewTable;
 import com.elixir.hunwars.ui.views.BuildingsViewTable;
 import com.elixir.hunwars.ui.views.FoodViewTable;
 import com.elixir.hunwars.ui.views.OverviewViewTable;
 import com.elixir.hunwars.ui.views.StorageViewTable;
+import com.elixir.hunwars.ui.views.TradeViewTable;
 import com.elixir.hunwars.ui.views.WorkersViewTable;
 
 public class GameViewTable extends Table {
@@ -19,9 +21,11 @@ public class GameViewTable extends Table {
 	private AgricultureViewTable agricultureViewTable;
 	private WorkersViewTable workersViewTable;
 	private BuildingsViewTable buildingsViewTable;
+	private BuildingsInProgressViewTable buildingsInProgressViewTable;
 	private ArmiesViewTable armiesViewTable;
 	private StorageViewTable storageViewTable;
 	private FoodViewTable foodViewTable;
+	private TradeViewTable tradeViewTable;
 	
 	public GameViewTable(GameState gameState, Stage stage) {
 		this.gameState = gameState;
@@ -48,6 +52,9 @@ public class GameViewTable extends Table {
 		case BUILDINGS:
 			add(buildingsViewTable);
 			break;
+		case BUILDINGS_PRODUCTION:
+			add(buildingsInProgressViewTable);
+			break;
 		case ARMIES:
 			add(armiesViewTable);
 			break;
@@ -56,6 +63,9 @@ public class GameViewTable extends Table {
 			break;
 		case FOOD:
 			add(foodViewTable);
+			break;
+		case TRADE:
+			add(tradeViewTable);
 			break;
 		default:
 			add(overviewViewTable);
@@ -68,9 +78,11 @@ public class GameViewTable extends Table {
 		agricultureViewTable = new AgricultureViewTable(gameState, stage);
 		workersViewTable = new WorkersViewTable(gameState);
 		buildingsViewTable = new BuildingsViewTable(gameState, stage);
+		buildingsInProgressViewTable = new BuildingsInProgressViewTable(gameState);
 		armiesViewTable = new ArmiesViewTable(gameState);
 		storageViewTable = new StorageViewTable(gameState);
 		foodViewTable = new FoodViewTable(gameState);
+		tradeViewTable = new TradeViewTable(gameState);
 
 		updateGameView();
 	}

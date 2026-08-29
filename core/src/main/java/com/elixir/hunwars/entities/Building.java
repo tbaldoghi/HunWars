@@ -28,7 +28,32 @@ public class Building {
 		
 		return buildingsToPrioritize;
 	}
-	
+
+	public int getInProgress(BuildingType buildingType, int index) {
+		return buildings.get(buildingType).getInProgress()[index];
+	}
+
+	public int getTotalInProgressCount(BuildingType buildingType) {
+		int counter = 0;
+		int[] inProgress = buildings.get(buildingType).getInProgress();
+		
+		for (int i = 0; i < inProgress.length; i++) {
+			counter += inProgress[i];
+		}
+
+		return counter;
+	}
+
+	public int getPercentage(BuildingType buildingType, int totalLandCount) {
+		int buildingHave = buildings.get(buildingType).getHave();
+		
+		if (totalLandCount == 0 || buildingHave == 0) {
+			return 0;
+		}
+		
+		return (int)((float)buildingHave / totalLandCount * 100);
+	}
+
 	public int storageCapcityForResource(ResourceType resourceType) {
 		int capacity = resourceType.getResourceRuleSet().getStorageCapacity().getCapacity();
 		int storageNumber = getBuilding(BuildingType.STORAGE).getHave();
@@ -38,6 +63,12 @@ public class Building {
 	
 	public Husbandry getHusbandry() {
 		return husbandry;
+	}
+	
+	public void build(BuildingType buildingType, int amount) {
+		BuildingData buildingData = buildings.get(buildingType);
+
+		buildingData.setInProgress(buildingData.getProductionTime(), amount);
 	}
 
 	private void populateBuildings() {

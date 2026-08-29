@@ -37,7 +37,7 @@ public class ArmiesViewTable extends Table {
 		for (int i = 0; i < armies.length; i++) {
 			Button nameText = new Button(armies[i]);
 			Text garrisonText = new Text("550");
-			Text haveText = new Text("40");
+			Text haveText = new Text("0");
 			Text inProgressText = new Text("0");
 			
 			add(nameText);

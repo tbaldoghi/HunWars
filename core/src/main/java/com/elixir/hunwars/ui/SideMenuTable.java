@@ -50,7 +50,7 @@ public class SideMenuTable extends Table {
 		Button tradeButton = new Button(GameView.Trade.name(), true);
 		Button diplomacyButton = new Button(GameView.Diplomacy.name(), true);
 		Button warButton = new Button(GameView.War.name(), true);
-		
+
 		add(overviewButton).colspan(2).pad(2);
 		row();
 		add(agricultureButton).colspan(2).pad(2);
@@ -87,7 +87,16 @@ public class SideMenuTable extends Table {
 			buttonStyle.up = new SpriteDrawable(sprite);
 			buttonStyle.down = new SpriteDrawable(spriteDown);
 			ImageButton productionButton = new ImageButton(buttonStyle);
+			ImageButton buildingProductionButton = new ImageButton(buttonStyle);
 			
+			buildingProductionButton.addListener(new ClickListener() {
+				@Override
+				public void clicked(InputEvent event, float x, float y) {
+					gameState.setCurrentGameView(GameViewType.BUILDINGS_PRODUCTION);
+					gameViewTable.updateGameView();
+				}
+			});
+
 			ImageButtonStyle infoButtonStyle = new ImageButtonStyle();
 			
 			Texture infoTexture = new Texture(Gdx.files.internal("images/info_button.png"));
@@ -160,10 +169,14 @@ public class SideMenuTable extends Table {
 				rowTable.add(researchButton).padRight(4);;
 			}
 			
-			if (i == 0 || i == 3 || i == 4 || i == 8) {
+			if (i == 0 || i == 4 || i == 8) {
 				rowTable.add(productionButton).padRight(6);
 			}
-			
+
+			if (i == 3) {
+				rowTable.add(buildingProductionButton).padRight(6);
+			}
+
 			if (i == 1) {
 				rowTable.add(foodButton).padRight(4);
 			}
