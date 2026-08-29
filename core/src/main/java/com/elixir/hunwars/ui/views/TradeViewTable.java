@@ -23,6 +23,7 @@ public class TradeViewTable  extends Table {
 	
 	public void updateTradeView() {
 		clearChildren();
+		addTableTabs();
 		
 		switch (currentTradeViewType) {
 		case OVERVIEW:
@@ -41,6 +42,10 @@ public class TradeViewTable  extends Table {
 	}
 
 	private void addTableElements() {
+		updateTradeView();
+	}
+	
+	private void addTableTabs() {
 		Button overviewButton = new Button("Overview");
 		Button tradeButton = new Button("Trade");
 		Button importButton = new Button("Import");
@@ -50,29 +55,31 @@ public class TradeViewTable  extends Table {
 		add(tradeButton);
 		add(importButton);
 		add(exportButton);
-		
-		updateTradeView();
+		row();
 	}
-	
+
 	private void addOverviewElements() {
 		Resource resource = gameState.getPlayerGameData().getResource();
 		
+		Table overviewTable = new Table();
 		Text nameHeaderText = new Text("Name");
 		Text offersHeaderText = new Text("Offers");
 		Text requestsHeaderText = new Text("Requests");
 		Text topProducersHeaderText = new Text("Top producers");
 
-		add(nameHeaderText);
-		add(offersHeaderText);
-		add(requestsHeaderText);
-		add(topProducersHeaderText);
-		row();
+		overviewTable.add(nameHeaderText);
+		overviewTable.add(offersHeaderText);
+		overviewTable.add(requestsHeaderText);
+		overviewTable.add(topProducersHeaderText);
+		overviewTable.row();
 
 		for (ResourceData resourceData : resource.getStorageResources()) {
 			Text nameText = new Text(resourceData.getName());
 		
-			add(nameText);
-			row();
+			overviewTable.add(nameText);
+			overviewTable.row();
 		}
+
+		add(overviewTable).colspan(4).padTop(24);
 	}
 }
