@@ -60,7 +60,7 @@ public class TradeViewTable  extends Table {
 
 	private void addOverviewElements() {
 		Resource resource = gameState.getPlayerGameData().getResource();
-		
+
 		Table overviewTable = new Table();
 		Text nameHeaderText = new Text("Name");
 		Text offersHeaderText = new Text("Offers");
