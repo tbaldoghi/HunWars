@@ -2,11 +2,13 @@ package com.elixir.hunwars.ui.views;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider.SliderStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.elixir.hunwars.GameState;
@@ -40,8 +42,18 @@ public class AgricultureViewTable extends Table {
 		int husbandry = building.getBuilding(BuildingType.HUSBANDRY).getHave();
 		int pasture = building.getHusbandry().getPasture();
 		int arableLand = building.getHusbandry().getArableLand();
+
 		SliderStyle sliderStyle = new SliderStyle();
 		Skin defaultSkin = new Skin(Gdx.files.internal("skin/uiskin.json"));
+		Modal clearModal = new Modal(defaultSkin);
+		Button modalButton = new Button("Ok");
+		Text modalText = new Text("Modal text text text");
+		Text modalText2 = new Text("Modal text2");
+		clearModal.getContentTable().add(modalText);
+		clearModal.getContentTable().row();
+		clearModal.getContentTable().add(modalText2);
+		clearModal.getContentTable().row();
+		clearModal.button(modalButton);		
 		Text landsText = new Text("Lands", true);
 		Text forestText = new Text("Forests");
 		Text forestValueText = new Text(Integer.toString(land.getLandCount(LandType.FOREST)));
@@ -49,6 +61,14 @@ public class AgricultureViewTable extends Table {
 		Text wildernessText = new Text("Wilderness");
 		Text wildernessValueText = new Text(Integer.toString(land.getLandCount(LandType.WILDERNESS)));
 		Button clearButton = new Button("Clear");
+		
+		clearButton.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				clearModal.show(stage);
+			}
+		});
+
 		Text emptyLandText = new Text("Fields");
 		Text emptyLandValueText = new Text(Integer.toString(land.getLandCount(LandType.FIELD)));
 		Text marshText = new Text("Marshes");
@@ -130,18 +150,5 @@ public class AgricultureViewTable extends Table {
 		}
 		
 		add(herdsTable);
-
-		Modal clearModal = new Modal("Title here", defaultSkin);
-		Button modalButton = new Button("Ok");
-		Text modalText = new Text("Modal text text text");
-		Text modalText2 = new Text("Modal text2");
-		clearModal.getContentTable().add(modalText);
-		clearModal.getContentTable().row();
-		clearModal.getContentTable().add(modalText2);
-		clearModal.getContentTable().row();
-		clearModal.button(modalButton);
-
-		clearModal.show(stage);
-		clearModal.hide();
 	}
 }
